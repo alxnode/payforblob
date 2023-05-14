@@ -1,6 +1,17 @@
 export interface IValues {
-  namespace: string
+  namespace_id: string
   data: string
-  gas: number
+  gas_limit: number
   fee: number
+}
+
+export interface IData {
+  height: number | string
+  txhash: string
+  date: string
+}
+
+export interface IDataContextValue {
+  dataArr: IData[]
+  submitData: (payload: IValues) => void
 }

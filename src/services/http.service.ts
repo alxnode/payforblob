@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: '',
+  baseURL: 'https://pfb-rpc.bitszn.com',
   timeout: 60000,
 })
 
