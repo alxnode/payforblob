@@ -1,16 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Main from './layout/Main'
-import Tab from './components/Tab'
-
-const tabs = ['Send', 'Generate']
 
 function App(): JSX.Element {
-  const [activeTab, setActiveTab] = useState<string>('Send')
-
-  const handleChangeTab = (tabName: string) => {
-    setActiveTab(tabName)
-  }
-
   return (
     <div className="p-4 mt-10 max-w-7xl mx-auto flex flex-col justify-center items-center">
       <div className="h-10 mb-10">
@@ -20,19 +11,8 @@ function App(): JSX.Element {
           className="block w-full h-full"
         />
       </div>
-      {/* <div className="flex mb-10 gap-10 text-lg">
-        {tabs.map((t) => (
-          <Tab
-            key={t}
-            title={t}
-            activeTab={activeTab}
-            onTabChange={handleChangeTab}
-          />
-        ))}
-      </div> */}
-      {/* {activeTab === 'Send' && <Main />} */}
+
       <Main />
-      {/* {activeTab === 'Generate' && <div>Gen</div>} */}
     </div>
   )
 }

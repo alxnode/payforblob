@@ -6,6 +6,7 @@ export interface IValues {
 }
 
 export interface IData {
+  namespaceId: string
   height: number | string
   txhash: string
   date: string
@@ -14,4 +15,5 @@ export interface IData {
 export interface IDataContextValue {
   dataArr: IData[]
   submitData: (payload: IValues) => void
+  clearData: () => void
 }

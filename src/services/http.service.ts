@@ -10,7 +10,7 @@ const httpService = {
     const data = await instance.get(url)
     return data
   },
-  post: async (url: string, payload: any) => {
+  post: async (url: string, payload: unknown) => {
     const data = await instance.post(url, payload)
     return data
   },

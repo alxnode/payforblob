@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FormikHelpers, useFormik } from 'formik'
 import { IValues } from '~/types'
 import * as Yup from 'yup'
 import Loader from '~/components/Loader'
 import Input from '~/components/Input'
 import { useData } from '~/hooks/useData'
+import Table from '~/components/Table'
 
 function generateHexStrings() {
   const nID = Array.from({ length: 16 }, () =>
@@ -28,7 +29,7 @@ const ValidationSchema = Yup.object().shape({
 })
 
 const Main = () => {
-  const { submitData, dataArr } = useData()
+  const { submitData, dataArr, clearData } = useData()
 
   const formik = useFormik({
     initialValues: {
@@ -58,10 +59,10 @@ const Main = () => {
 
   return (
     <div className="space-y-10 w-full">
-      <div className="flex gap-8 w-full">
+      <div className="flex flex-col justify-center  md:flex-row gap-8 w-full ">
         <form
           onSubmit={formik.handleSubmit}
-          className="bg-white shadow-sm border border-neutral-400 rounded-xl w-5/12"
+          className="bg-white shadow-sm border border-neutral-200 rounded w-full sm:w-8/12 md:w-5/12 mx-auto h-min"
         >
           <div className="px-4 py-6 sm:p-8">
             <Input
@@ -97,11 +98,11 @@ const Main = () => {
               className="mb-4"
             />
           </div>
-          <div className="flex items-center justify-end gap-x-6 border-t border-neutral-400 px-4 py-4 sm:px-8">
+          <div className="flex items-center justify-end gap-x-6 border-t border-neutral-200 px-4 py-4 sm:px-8">
             <button
               onClick={handleGenerate}
               type="button"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-24 text-center"
+              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 text-center"
             >
               Generate
             </button>
@@ -114,18 +115,20 @@ const Main = () => {
           </div>
         </form>
 
-        <div className="px-4 sm:px-0 w-7/12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">
-            Tx history
-          </h2>
-          <ul className="mt-1 text-sm leading-6 text-gray-600">
-            {dataArr.map((d) => (
-              <li key={d.txhash} className="mb-2">
-                {d.date}:{' '}
-                {JSON.stringify({ height: d.height, txhash: d.txhash })}
-              </li>
-            ))}
-          </ul>
+        <div className="sm:px-0 md:w-7/12">
+          <div className="flex items-center justify-between">
+            <h2 className="text-base font-semibold leading-7 text-gray-900">
+              My history
+            </h2>
+            <button
+              onClick={clearData}
+              type="button"
+              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600  text-center"
+            >
+              Clear history
+            </button>
+          </div>
+          <Table data={dataArr} />
         </div>
       </div>
     </div>

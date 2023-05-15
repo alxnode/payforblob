@@ -12,11 +12,11 @@ export const DataContext = createContext({} as IDataContextValue)
 
 export const useData = () => useContext(DataContext)
 
-interface IDataProviderProps {
+type DataProviderProps = {
   children: ReactNode
 }
 
-const DataProvider = ({ children }: IDataProviderProps) => {
+const DataProvider = ({ children }: DataProviderProps) => {
   const [dataArr, setDataArr] = useState<IData[]>([])
 
   const getDataArr = () => {
@@ -43,8 +43,13 @@ const DataProvider = ({ children }: IDataProviderProps) => {
     }
   }
 
+  const clearData = () => {
+    localStorage.removeItem('tx_history')
+    setDataArr([])
+  }
+
   return (
-    <DataContext.Provider value={{ dataArr, submitData }}>
+    <DataContext.Provider value={{ dataArr, submitData, clearData }}>
       {children}
     </DataContext.Provider>
   )
