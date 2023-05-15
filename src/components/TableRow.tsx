@@ -16,7 +16,7 @@ const TableRow: FC<TableRowProps> = ({ txData }) => {
       </td>
       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 ">
         <a
-          href={`https://testnet.mintscan.io/celestia-testnet/txs/${txData.txhash}?height=${txData.height}`}
+          href={`https://testnet.mintscan.io/celestia-incentivized-testnet/txs/${txData.txhash}`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 truncate w-44 block"
