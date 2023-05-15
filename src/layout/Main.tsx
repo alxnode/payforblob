@@ -7,13 +7,11 @@ import Input from '~/components/Input'
 import { useData } from '~/hooks/useData'
 
 function generateHexStrings() {
-  const numChars = 16 // Number of characters in the hexadecimal string (equivalent to 8 bytes)
-
-  const nID = Array.from({ length: numChars }, () =>
+  const nID = Array.from({ length: 16 }, () =>
     Math.floor(Math.random() * 16).toString(16)
   ).join('')
 
-  const lenMsg = Math.floor(Math.random() * 101) // Random number between 0 and 100
+  const lenMsg = Math.floor(Math.random() * 51) * 2
 
   const msg = Array.from({ length: lenMsg }, () =>
     Math.floor(Math.random() * 16).toString(16)
@@ -53,7 +51,6 @@ const Main = () => {
 
   const handleGenerate = () => {
     const [nID, msg] = generateHexStrings()
-    console.log(nID, msg)
 
     formik.setFieldValue('namespace_id', nID)
     formik.setFieldValue('data', msg)
